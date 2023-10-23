@@ -1,6 +1,8 @@
-import styled from 'styled-components';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { Outlet } from 'react-router-dom';
+import styled, { DefaultTheme } from 'styled-components';
+import { AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
+import { Link, Outlet } from 'react-router-dom';
+import { Modal } from '../Modal';
+import { useEffect, useState } from 'react';
 
 const HeaderWrapper = styled.header`
   height: 90px;
@@ -9,17 +11,24 @@ const HeaderWrapper = styled.header`
   background-color: ${props => props.theme.colors.secondary.main};
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
+  * {
+    color: ${(props) => props.theme.colors.secondary.contrastText};
+    cursor: pointer;
+  }
 `;
 
-const CartIcon = styled(AiOutlineShoppingCart)`
-  color: ${(props) => props.theme.colors.secondary.contrastText};
-`
+export const Header = () => {
+  const [open, setOpen] = useState(false)
 
-export const Header = () => (
+  return(
   <>
     <HeaderWrapper>
-      <CartIcon size="50"/>
+      <Link to="/cart"><AiOutlineShoppingCart size="50" /></Link>
+      <AiOutlineMenu size="50" onClick={() => setOpen(!open)}/>
+        {open && <Modal />}
     </HeaderWrapper>
     <Outlet />
   </>
-);
+  );
+}

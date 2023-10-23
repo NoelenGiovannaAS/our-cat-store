@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CategoryWrapper = styled.div`
@@ -26,13 +27,12 @@ const Category = styled.div`
 
 export const Categories = () => {
   const categories = ['Alimentação', 'Cuidados', 'Acessórios e Brinquedos'];
-  const handleClick = () => {
-    console.log("TESTE")
-  }
+  const navigate = useNavigate();
+
   return (
     <CategoryWrapper>
       {categories.map((category) => (
-        <Category key={category} onClick={handleClick}>{category}</Category>
+        <Category key={category} onClick={() => navigate(`${category}`)}>{category}</Category>
       ))}
     </CategoryWrapper>
   );
