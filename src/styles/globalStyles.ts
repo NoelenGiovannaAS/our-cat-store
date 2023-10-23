@@ -6,12 +6,14 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         outline: 0;
         box-sizing: border-box;
+
     }
 
-    html body #root{
-        height: 100vh;
-        background-color: ${({ theme }) => theme.colors.primary};
-        color: ${({ theme }) => theme.colors.tertiary}
+    html body{
+        background-color: ${({ theme }) => theme.colors.background};
+        color: ${({ theme }) => theme.colors.primary.contrastText};
+        font-family: ${({theme}) => theme.fonts[1]};
+        
     }
 
 `;

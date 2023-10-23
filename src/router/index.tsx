@@ -1,21 +1,20 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home';
-import NotFound from '../pages/NotFound';
+import { createBrowserRouter } from 'react-router-dom';
+import { Home } from '../pages/Home/Home';
+import { Header } from '../components/Header';
+import Cart from '../pages/Cart';
 
-const routerConfig = createBrowserRouter([
+export const routers = createBrowserRouter([
   {
-    path: '/',
-    element: <div></div>,
-    errorElement: <NotFound />,
+    element: <Header />,
     children: [
       {
-        index: true,
+        path: '/',
         element: <Home />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },
 ]);
-
-export const Router = ({ router = routerConfig }) => (
-  <RouterProvider router={router} />
-);
