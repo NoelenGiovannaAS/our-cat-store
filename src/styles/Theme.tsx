@@ -1,30 +1,40 @@
-import { ThemeProvider } from 'styled-components';
-import { FC, ReactNode } from 'react';
-import { GlobalStyle } from './globalStyles';
+const defaultTheme = {
+  fonts: ['Arial, sans-serif', 'Verdana, sans-serif'],
+  fontSize: {
+    small: '0.5rem',
+    normal: '1.5rem',
+    large: '2rem',
+    xlarge: '2.5rem',
+  },
+};
 
-interface Props {
-  children: ReactNode;
-}
-
-export const theme = {
+export const LightTheme = {
+  ...defaultTheme,
   colors: {
-    primary: '#EA9085',
-    secondary: '#D45D79',
-    tertiary: '#6E5773',
-  },
-  fonts: {
-    primary: 'Arial, sans-serif',
-    secondary: 'Verdana, sans-serif',
+    background: '#EA9085',
+    primary: {
+      main: '#E9E2D0',
+      contrastText: '#6E5773',
+    },
+    secondary: {
+      main: '#D45D79',
+      contrastText: '#E9E2D0',
+    },
   },
 };
 
-const Theme: FC<Props> = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {children}
-    </ThemeProvider>
-  );
+export const DarkTheme = {
+  ...defaultTheme,
+  colors: {
+    background: '#342f52',
+    primary: {
+      main: '#6d6c6b',
+      contrastText: '#E9E2D0',
+    },
+    secondary: {
+      main: '#97354c',
+      contrastText: '#E9E2D0',
+    },
+  },
 };
 
-export default Theme;
