@@ -1,7 +1,8 @@
 const defaultTheme = {
   fonts: ['Arial, sans-serif', 'Verdana, sans-serif'],
   fontSize: {
-    small: '0.5rem',
+    xsmall: '0.5rem',
+    small: '1.0rem',
     normal: '1.5rem',
     large: '2rem',
     xlarge: '2.5rem',
@@ -37,4 +38,3 @@ export const DarkTheme = {
     },
   },
 };
-
