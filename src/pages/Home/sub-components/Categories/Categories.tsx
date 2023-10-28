@@ -41,7 +41,7 @@ export const Categories = () => {
           onClick={() =>
             navigate({
               pathname: '/category',
-              search: `id=${category.id}`,
+              search: `name=${category.categoryName}&id=${category.id}`,
             })
           }
         >

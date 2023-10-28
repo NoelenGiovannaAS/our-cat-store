@@ -12,10 +12,11 @@ const HeaderWrapper = styled.header`
   background-color: ${props => props.theme.colors.secondary.main};
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
 `;
 
 const Icons = styled.div`
+  display: flex;
+  gap: 10px;
   * {
     color: ${props => props.theme.colors.secondary.contrastText};
     cursor: pointer;

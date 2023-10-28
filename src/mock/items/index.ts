@@ -3,13 +3,14 @@ import { Item } from '@interfaces';
 export const itemsMock: Item[] = [
   {
     id: 0,
-    itemName: 'BOLINHA DIVERSÃO GRATUITA',
+    itemName: 'BOLINHA PULA PULA',
     description: 'Bolinha muito bacana.',
     quantity: 12,
     price: 25,
     itemImage: '',
     category: '3',
   },
+
   {
     id: 1,
     itemName: 'ARRANHADOR FOFINHO',
