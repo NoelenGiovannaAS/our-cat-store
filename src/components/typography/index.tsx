@@ -23,20 +23,26 @@ const StyledTypography = styled('p').attrs<ItypographyStyle>(
   ${({ color = 'primary' }) => css`
     color: ${props => props.theme?.colors?.[color].contrastText};
   `}
-  font-size: ${props => props?.fontSize ?? '14px'};
+  font-size: ${props => props?.fontSize};
   text-align: ${props => props?.textAlign ?? 'initial'};
-  margin: ${props => props?.margin ?? 'initial'};
+  margin: ${props => props?.margin ?? 0};
 `;
 
-const Typography = (props: Itypography) => {
+const Typography = ({
+  elementType,
+  margin,
+  fontSize,
+  textAlign,
+  children,
+}: Itypography) => {
   return (
     <StyledTypography
-      elementType={props.elementType}
-      margin={props.margin}
-      fontSize={props.fontSize}
-      textAlign={props.textAlign}
+      elementType={elementType}
+      margin={margin}
+      fontSize={fontSize}
+      textAlign={textAlign}
     >
-      {props.children}
+      {children}
     </StyledTypography>
   );
 };
