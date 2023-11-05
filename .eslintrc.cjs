@@ -5,8 +5,9 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules'],
   parser: '@typescript-eslint/parser',
@@ -16,18 +17,18 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'prettier/prettier':[
-      "error",
+    'prettier/prettier': [
+      'error',
       {
-        endOfLine: "auto",
+        endOfLine: 'auto',
         printWidth: 80,
-        trailingComma: "all",
+        trailingComma: 'all',
         semi: true,
         singleQuote: true,
         useTabs: false,
         tabWidth: 2,
-        arrowParens: "avoid"
-      }
-    ]
+        arrowParens: 'avoid',
+      },
+    ],
   },
-}
+};

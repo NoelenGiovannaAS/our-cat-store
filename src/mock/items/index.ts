@@ -1,41 +1,51 @@
-import { Item } from '@interfaces';
+import { IItem } from '@interfaces';
 
-export const itemsMock: Item[] = [
-  {
-    id: 0,
-    itemName: 'BOLINHA PULA PULA',
-    description: 'Bolinha muito bacana.',
-    quantity: 12,
-    price: 25,
-    itemImage: '',
-    category: '3',
-  },
-
+export const itemsMock: IItem[] = [
   {
     id: 1,
-    itemName: 'ARRANHADOR FOFINHO',
-    description: 'Arranhador muito fofinho.',
-    quantity: 10,
-    price: 65,
+    itemName: 'BOLINHA PULA PULA',
+    description: 'Bolinha muito bacana.',
+    price: 10,
     itemImage: '',
-    category: '3',
+    categoryId: '3',
+    quantity: 0,
   },
+
   {
     id: 2,
-    itemName: 'RAÇÃO PARA GATOS FILHOTES PREMIUM 5kg',
-    description: '',
-    quantity: 10,
-    price: 99,
+    itemName: 'ARRANHADOR FOFINHO',
+    description: 'Arranhador muito fofinho.',
+    price: 10,
     itemImage: '',
-    category: '1',
+    categoryId: '3',
+    quantity: 0,
   },
   {
     id: 3,
+    itemName: 'FOFINHO',
+    description: 'Arranhador muito fofinho.',
+    price: 65,
+    itemImage: '',
+    categoryId: '3',
+    quantity: 0,
+  },
+
+  {
+    id: 4,
+    itemName: 'RAÇÃO PARA GATOS FILHOTES PREMIUM 5kg',
+    description: '',
+    price: 99,
+    itemImage: '',
+    categoryId: '1',
+    quantity: 0,
+  },
+  {
+    id: 5,
     itemName: 'PASTA DENTÁRIA CANINA SABOR CARNE 60ml',
     description: '',
-    quantity: 15,
     price: 30,
     itemImage: 'teste.png',
-    category: '2',
+    categoryId: '2',
+    quantity: 0,
   },
 ];

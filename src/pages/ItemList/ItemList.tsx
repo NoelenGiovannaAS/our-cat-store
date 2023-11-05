@@ -1,24 +1,42 @@
+import { Item } from '@components';
+import { NotFound } from '@pages';
+import Typography from 'components/typography';
+import { itemsMock } from 'mock/items';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Items } from '../../components';
-import { itemsMock } from '../../mock/items';
 
-const ProductsListWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 50px 70px;
   gap: 25px;
+  text-align: center;
+`;
+
+const ProductsList = styled.div`
+  display: flex;
+  margin: 5%;
+  gap: 25px;
+  flex-wrap: wrap;
 `;
 
 export const ItemList = () => {
   const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get('id');
+  const categoryName = searchParams.get('category');
+  const items = itemsMock.filter(item => item.categoryId === categoryId) ?? '';
+
+  if (!items) return <NotFound />;
 
   return (
-    <ProductsListWrapper>
-      <h1>{searchParams.get('name')}</h1>
-      <Items items={itemsMock} categoryId={searchParams.get('id')} />
-    </ProductsListWrapper>
+    <Wrapper>
+      <Typography elementType="h1">{categoryName}</Typography>
+      <ProductsList>
+        {items.map(item => (
+          <Item {...item} key={item.id} />
+        ))}
+      </ProductsList>
+    </Wrapper>
   );
 };

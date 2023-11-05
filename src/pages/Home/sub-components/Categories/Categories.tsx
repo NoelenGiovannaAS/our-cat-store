@@ -31,6 +31,7 @@ export const Categories = () => {
     { id: 2, categoryName: 'Cuidados' },
     { id: 3, categoryName: 'Acessórios e Brinquedos' },
   ];
+
   const navigate = useNavigate();
 
   return (
@@ -40,8 +41,8 @@ export const Categories = () => {
           key={category.id}
           onClick={() =>
             navigate({
-              pathname: '/category',
-              search: `name=${category.categoryName}&id=${category.id}`,
+              pathname: '/items',
+              search: `category=${category.categoryName}&id=${category.id}`,
             })
           }
         >

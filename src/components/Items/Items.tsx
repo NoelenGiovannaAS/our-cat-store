@@ -1,23 +1,10 @@
-import { Item } from '@interfaces';
-import { useState } from 'react';
-import {
-  AiFillMinusCircle,
-  AiFillPlusCircle,
-  AiOutlineShoppingCart,
-} from 'react-icons/ai';
+import { IItem } from '@interfaces';
+import ImageNotFound from 'assets/empty_image.png';
+import Typography from 'components/typography';
+import { useCartContext } from 'contexts/CartContext/Cart';
+import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import styled from 'styled-components';
-import ImageNotFound from '../../assets/empty_image.png';
-import { NotFound } from '../../pages/NotFound/NotFound';
-import { formatCurrency } from '../../utils/formatCurrency';
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 16px;
-  flex-wrap: wrap;
-`;
+import { formatCurrency } from 'utils/formatCurrency';
 
 const StyledItem = styled.div`
   display: flex;
@@ -64,47 +51,41 @@ const ItemsButtonsWrapper = styled.div`
   justify-content: flex-start;
   gap: 10px;
   margin: 10px;
-  svg,
-  button {
-    cursor: pointer;
-  }
 `;
 
-interface Props {
-  items: Item[];
-  categoryId: string | null;
-}
+const Icon = styled.button`
+  border: none;
+  background-color: transparent;
+  color: ${props =>
+    props.disabled ? 'grey' : props.theme.colors.primary.contrastText};
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
+`;
 
-export const Items = ({ items, categoryId }: Props) => {
-  const [quantityInCart, setQuantityInCart] = useState(0);
-  if (!categoryId) return <NotFound />;
+export const Item = (item: IItem, cartPage: boolean) => {
+  const { addItem, removeItem, cart } = useCartContext();
+  const itemCart = cart.items.find(itemCart => itemCart.id === item.id);
+  const quantity = itemCart?.quantity;
 
   return (
-    <Wrapper>
-      {items
-        .filter(item => item.category === categoryId)
-        .map((item: Item) => (
-          <StyledItem key={item.id}>
-            <Image src={item?.itemImage || ImageNotFound} />
-            <h3>{item.itemName}</h3>
-            <p>{item.description}</p>
-            <h4>{formatCurrency(item.price)}</h4>
-            <ItemsButtonsWrapper>
-              <AiFillPlusCircle
-                size="20"
-                onClick={() => setQuantityInCart(quantityInCart + 1)}
-              />
-              <QuantityItemsInput />
-              <AiFillMinusCircle
-                size="20"
-                onClick={() => setQuantityInCart(quantityInCart - 1)}
-              />
-              <CartButton>
-                <AiOutlineShoppingCart size="20" />
-              </CartButton>
-            </ItemsButtonsWrapper>
-          </StyledItem>
-        ))}
-    </Wrapper>
+    <StyledItem key={item.id}>
+      <Image src={item?.itemImage || ImageNotFound} />
+      <Typography elementType="h3">{item.itemName}</Typography>
+      <Typography>{item.description}</Typography>
+      <Typography elementType="h4">{formatCurrency(item.price)}</Typography>
+
+      <ItemsButtonsWrapper>
+        <Icon onClick={() => addItem(item)}>
+          <AiFillPlusCircle size="20" />
+        </Icon>
+
+        {quantity ?? 0}
+        <Icon
+          disabled={!quantity}
+          onClick={() => removeItem(item.id, item.price)}
+        >
+          <AiFillMinusCircle size="20" />
+        </Icon>
+      </ItemsButtonsWrapper>
+    </StyledItem>
   );
 };

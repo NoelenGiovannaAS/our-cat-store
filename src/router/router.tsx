@@ -1,6 +1,6 @@
+import { Header } from '@components';
+import { Cart, Home, ItemList } from '@pages';
 import { createBrowserRouter } from 'react-router-dom';
-import { Header } from '../components';
-import { Cart, Home, ItemList } from '../pages';
 
 export const routers = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ export const routers = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/category',
+        path: '/items',
         element: <ItemList />,
       },
       {
